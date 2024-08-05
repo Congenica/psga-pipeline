@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-22.04
     environment: ${{ inputs.actions_env }}
     outputs:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_INSTANCE_TYPE: ${{ vars.AWS_INSTANCE_TYPE}}
       CICD_OIDC_ROLE: ${{ vars.CICD_OIDC_ROLE }}
       GH_RUNNER_SUBNET_ID: ${{ vars.GH_RUNNER_SUBNET_ID }}
       GH_RUNNER_SECURITY_GROUP_ID: ${{ vars.GH_RUNNER_SECURITY_GROUP_ID }}
@@ -37,8 +39,8 @@ jobs:
       role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
       github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
     with:
-      aws-region: ${{ vars.AWS_REGION }}
-      ec2-instance-type: ${{ vars.AWS_INSTANCE_TYPE }}
+      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
+      ec2-instance-type: ${{ needs.vars.outputs.AWS_INSTANCE_TYPE }}
       subnet-id: ${{  needs.vars.outputs.GH_RUNNER_SUBNET_ID }}
       security-group-id: ${{  needs.vars.outputs.GH_RUNNER_SECURITY_GROUP_ID }}
       iam-role-name: ${{  needs.vars.outputs.GH_RUNNER_IAM_ROLE_NAME }}
@@ -56,8 +58,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: eu-west-2
-          role-to-assume: ${{ secrets.CICD_OIDC_ROLE }}
+          aws-region: ${{ needs.vars.outputs.AWS_REGION }}
+          role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
           role-session-name: cicd-role-session
           mask-aws-account-id: false
 
@@ -90,6 +92,6 @@ jobs:
       role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
       github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
     with:
-      aws-region: ${{ vars.AWS_REGION }}
+      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
       label: ${{ needs.start-runner.outputs.label }}
       ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
