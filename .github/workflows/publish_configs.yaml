@@ -7,8 +7,6 @@ on:
         default: nonprod
         required: false
     secrets:
-      CICD_OIDC_ROLE:
-        required: true
       GH_PSGA_SYSTEM_PAT:
         required: true
 
