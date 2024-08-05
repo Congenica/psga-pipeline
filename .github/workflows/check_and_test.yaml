@@ -36,7 +36,9 @@ jobs:
 
   check_and_test:
     name: Install dependencies and run tests
-    needs: start-runner # required to start the main job when the runner is ready
+    needs: 
+      - start-runner # required to start the main job when the runner is ready
+      - vars
     runs-on: ${{ needs.start-runner.outputs.label }}
     env:
       ALLURE_DIR: ${{ github.workspace }}/allure-results
