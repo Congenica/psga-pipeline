@@ -11,7 +11,7 @@ permissions:
 jobs:
   vars:
     runs-on: ubuntu-22.04
-    environment: prod
+    environment: saas01
     outputs:
       CICD_OIDC_ROLE: ${{ vars.CICD_OIDC_ROLE }}
       DEV_CICD_OIDC_ROLE: ${{ vars.DEV_CICD_OIDC_ROLE }}
@@ -29,10 +29,9 @@ jobs:
     uses: ./.github/workflows/publish_configs.yaml
     secrets:
       CICD_OIDC_ROLE: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-      S3_BUCKET_PATH: ${{ secrets.S3_BUCKET_PATH_PROD }}
       GH_PSGA_SYSTEM_PAT: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
     with:
-      actions_env: prod
+      actions_env: saas01
 
   start-runner:
     uses: Congenica/psga-reusable-workflows/.github/workflows/ec2-runner-start.yaml@main

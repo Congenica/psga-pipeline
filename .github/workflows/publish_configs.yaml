@@ -7,8 +7,6 @@ on:
         default: nonprod
         required: false
     secrets:
-      S3_BUCKET_PATH:
-        required: true
       CICD_OIDC_ROLE:
         required: true
       GH_PSGA_SYSTEM_PAT:
@@ -29,6 +27,7 @@ jobs:
       GH_RUNNER_SUBNET_ID: ${{ vars.GH_RUNNER_SUBNET_ID }}
       GH_RUNNER_SECURITY_GROUP_ID: ${{ vars.GH_RUNNER_SECURITY_GROUP_ID }}
       GH_RUNNER_IAM_ROLE_NAME: ${{ vars.GH_RUNNER_IAM_ROLE_NAME }}
+      S3_BUCKET_PATH: ${{ vars.S3_BUCKET_PATH }}
     steps:
       - run: echo "Exposing env vars"
 
@@ -76,7 +75,7 @@ jobs:
           fi
           for version in $VERSIONS; do
             for config in $(ls app/config); do
-              S3_PATH="${{ secrets.S3_BUCKET_PATH }}/${version}/${config}"
+              S3_PATH="${{ needs.vars.outputs.S3_BUCKET_PATH }}/${version}/${config}"
               yq e -i ".pipeline_version.docker_tag = \"${version}\"" app/config/${config}
               echo "Publishing version ${version} for config ${config} to ${S3_PATH}"
               aws s3 cp app/config/${config} $S3_PATH
