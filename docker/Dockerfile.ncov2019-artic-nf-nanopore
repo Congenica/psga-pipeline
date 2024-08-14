@@ -1,13 +1,13 @@
-FROM --platform=linux/amd64 condaforge/mambaforge:23.3.1-1 AS condabuild
+FROM --platform=linux/amd64 condaforge/mambaforge:24.3.0-0 AS condabuild
 
 COPY docker/sars_cov_2/ncov2019-artic-nf/environments/nanopore/environment.yml /environment.yml
 RUN mamba env create -f /environment.yml -n custom_env \
   && conda clean --all -y
 
 
-FROM --platform=linux/amd64 debian:bookworm-slim
+FROM --platform=linux/amd64 debian:buster-slim
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends procps rename \
+  && apt-get install -y --no-install-recommends procps rename libtiff5 \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/*
 
