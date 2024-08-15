@@ -49,8 +49,6 @@ jobs:
     uses: ./.github/workflows/publish_configs.yaml
     secrets:
       # Will always run on nonprod therefore no need to set env var
-      CICD_OIDC_ROLE: ${{ secrets.CICD_OIDC_ROLE }}
-      S3_BUCKET_PATH: ${{ secrets.S3_BUCKET_PATH_DEV }}
       GH_PSGA_SYSTEM_PAT: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
   test_traceability:
     needs: check_and_test

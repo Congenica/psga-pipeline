@@ -11,8 +11,10 @@ permissions:
 jobs:
   vars:
     runs-on: ubuntu-22.04
-    environment: prod
+    environment: saas01
     outputs:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_INSTANCE_TYPE: ${{ vars.AWS_INSTANCE_TYPE}}
       CICD_OIDC_ROLE: ${{ vars.CICD_OIDC_ROLE }}
       DEV_CICD_OIDC_ROLE: ${{ vars.DEV_CICD_OIDC_ROLE }}
       GH_RUNNER_SUBNET_ID: ${{ vars.GH_RUNNER_SUBNET_ID }}
@@ -28,11 +30,9 @@ jobs:
       - vars
     uses: ./.github/workflows/publish_configs.yaml
     secrets:
-      CICD_OIDC_ROLE: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-      S3_BUCKET_PATH: ${{ secrets.S3_BUCKET_PATH_PROD }}
       GH_PSGA_SYSTEM_PAT: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
     with:
-      actions_env: prod
+      actions_env: saas01
 
   start-runner:
     uses: Congenica/psga-reusable-workflows/.github/workflows/ec2-runner-start.yaml@main
@@ -41,12 +41,12 @@ jobs:
       role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
       github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
     with:
-      aws-region: ${{ vars.AWS_REGION }}
-      ec2-instance-type: ${{ vars.AWS_INSTANCE_TYPE }}
+      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
+      ec2-instance-type: ${{ needs.vars.outputs.AWS_INSTANCE_TYPE }}
       subnet-id: ${{  needs.vars.outputs.GH_RUNNER_SUBNET_ID }}
       security-group-id: ${{  needs.vars.outputs.GH_RUNNER_SECURITY_GROUP_ID }}
       iam-role-name: ${{  needs.vars.outputs.GH_RUNNER_IAM_ROLE_NAME }}
-      env_type: prod
+      env_type: saas01
 
   build_release_image:
     name: Build and push the release image
@@ -54,7 +54,6 @@ jobs:
       - vars
       - start-runner # required to start the main job when the runner is ready
     runs-on: ${{ needs.start-runner.outputs.label }}
-    environment: prod
     strategy:
       matrix:
         image:
@@ -80,8 +79,8 @@ jobs:
       - name: Configure dev AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: eu-west-2
-          role-to-assume: ${{ needs.vars.outputs.DEV_CICD_OIDC_ROLE }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.CICD_OIDC_ROLE }}
           role-session-name: cicd-dev-role-session
           mask-aws-account-id: false
 
@@ -111,7 +110,7 @@ jobs:
       - name: Configure prod AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: eu-west-2
+          aws-region: ${{ needs.vars.outputs.AWS_REGION }}
           role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
           role-session-name: cicd-prod-role-session
           mask-aws-account-id: false
@@ -133,6 +132,6 @@ jobs:
       role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
       github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
     with:
-      aws-region: ${{ vars.AWS_REGION }}
+      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
       label: ${{ needs.start-runner.outputs.label }}
       ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
