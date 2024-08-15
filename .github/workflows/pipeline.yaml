@@ -1,8 +1,6 @@
 name: Build, test and push pipeline images
 on:
   push:
-    branches-ignore:
-      - "release/**"
 
 jobs:
   check_and_test:
