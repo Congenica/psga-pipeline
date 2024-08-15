@@ -66,10 +66,14 @@ jobs:
       - name: Build (and push) the image
         run: |
           set -e
-          BRANCH_NAME=${GITHUB_REF/refs\/heads\//}
+          TAG_PREFIX=${GITHUB_REF/refs\/heads\//}
+          TAG_NAME="${TAG_PREFIX}_latest"
+          if [[ ${TAG_PREFIX} == release* ]]; then
+              TAG_NAME=${GITHUB_REF/refs\/heads\/release\//}
+          fi
           IMAGE_NAME="${{ inputs.name }}:${{ github.sha }}"
           ECR_IMAGE_NAME="${{ secrets.ECR_PATH_DEV }}/${IMAGE_NAME}"
-          ECR_BRANCH_LATEST_NAME="${{ secrets.ECR_PATH_DEV }}/${{ inputs.name }}:${BRANCH_NAME}_latest"
+          ECR_BRANCH_LATEST_NAME="${{ secrets.ECR_PATH_DEV }}/${{ inputs.name }}:${TAG_NAME}"
           DOCKERFILE="docker/Dockerfile.${{ inputs.name }}"
           if [[ ! -z "${{ inputs.dockerfile }}" ]]; then
             DOCKERFILE="docker/${{ inputs.dockerfile }}"
