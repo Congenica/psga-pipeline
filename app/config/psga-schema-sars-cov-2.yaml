@@ -16,32 +16,32 @@ input_fields:
       - rule_type: file_list
         file_type_combinations:
           - file_type: FASTQ
-            content_type: fastq/raw
-            reprocessing_content_type: fastq/cleaned-sequence-data
+            content_type: fastq-raw
+            reprocessing_content_type: fastq-cleaned-sequence-data
             max_number: 2
             groups: 2
             sequencing_technology: illumina
           - file_type: FASTQ_GZ
-            content_type: fastq/raw
-            reprocessing_content_type: fastq/cleaned-sequence-data
+            content_type: fastq-raw
+            reprocessing_content_type: fastq-cleaned-sequence-data
             max_number: 2
             groups: 2
             sequencing_technology: illumina
           - file_type: FASTQ
-            content_type: fastq/raw
-            reprocessing_content_type: fastq/cleaned-sequence-data
+            content_type: fastq-raw
+            reprocessing_content_type: fastq-cleaned-sequence-data
             max_number: 1
             groups: 1
             sequencing_technology: ont
           - file_type: FASTQ_GZ
             content_type: fastq/raw
-            reprocessing_content_type: fastq/cleaned-sequence-data
+            reprocessing_content_type: fastq-cleaned-sequence-data
             max_number: 1
             groups: 1
             sequencing_technology: ont
           - file_type: FASTA
-            content_type: fasta/raw
-            reprocessing_content_type: fasta/raw
+            content_type: fasta-raw
+            reprocessing_content_type: fasta-raw
             max_number: 1
             groups: 1
             sequencing_technology: unknown
@@ -233,20 +233,20 @@ output_fields:
 
 output_files:
   - file_type: FASTQ
-    content_type: fastq/cleaned-sequence-data
+    content_type: fastq-cleaned-sequence-data
     max_number: 2
     groups: 2
     sequencing_technology: illumina
   - file_type: FASTQ
-    content_type: fastq/cleaned-sequence-data
+    content_type: fastq-cleaned-sequence-data
     max_number: 1
     groups: 1
     sequencing_technology: ont
   - file_type: CSV
-    content_type: csv/cleaned-sequence-count
+    content_type: csv-cleaned-sequence-count
     max_number: 1
   - file_type: TXT
-    content_type: txt/cleaned-sequence-count
+    content_type: txt-cleaned-sequence-count
     max_number: 1
 
 settings:
