@@ -34,7 +34,7 @@ input_fields:
             groups: 1
             sequencing_technology: ont
           - file_type: FASTQ_GZ
-            content_type: fastq/raw
+            content_type: fastq-raw
             reprocessing_content_type: fastq-cleaned-sequence-data
             max_number: 1
             groups: 1
