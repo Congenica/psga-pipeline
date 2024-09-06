@@ -2,31 +2,31 @@
     "0774181d-fb20-4a73-b887-38af7eda9b38": [
         {
             "file": "reheadered_fasta/0774181d-fb20-4a73-b887-38af7eda9b38.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "56a63f60-764d-4fc7-8764-a46023cbe324": [
         {
             "file": "reheadered_fasta/56a63f60-764d-4fc7-8764-a46023cbe324.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "985347c5-ff6a-454c-ac34-bc353d05dd70": [
         {
             "file": "reheadered_fasta/985347c5-ff6a-454c-ac34-bc353d05dd70.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "a0951432-cd94-45b5-96d5-b721c037a451": [
         {
             "file": "reheadered_fasta/a0951432-cd94-45b5-96d5-b721c037a451.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "e80f3c63-d139-4c14-bd72-7a43897ab40d": [
         {
             "file": "reheadered_fasta/e80f3c63-d139-4c14-bd72-7a43897ab40d.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ]
 }

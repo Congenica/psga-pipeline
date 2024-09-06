@@ -482,7 +482,7 @@ def get_expected_output_files_per_sample(
             get_file_with_type(
                 output_path=output_path,
                 inner_dirs=["reheadered_fasta"],
-                filetypes=[FileType(".fasta", "fasta/final")],
+                filetypes=[FileType(".fasta", "fasta-final")],
                 sample_id=sample_id,
             )
         )
@@ -495,45 +495,45 @@ def get_expected_output_files_per_sample(
     else:
         if sequencing_technology == ILLUMINA:
             contamination_removal_clean_fastq = [
-                FileType(f"_{r}.fastq.gz", "fastq/cleaned-sequence-data", r) for r in [1, 2]
+                FileType(f"_{r}.fastq.gz", "fastq-cleaned-sequence-data", r) for r in [1, 2]
             ]
-            fastqc = [FileType(f"_{r}_fastqc.zip", "fastqc/qc", r) for r in [1, 2]]
+            fastqc = [FileType(f"_{r}_fastqc.zip", "fastqc-qc", r) for r in [1, 2]]
             ncov_bam = [
-                FileType(".sorted.bam", "bam/untrimmed"),
-                FileType(".sorted.bam.bai", "bai/untrimmed"),
-                FileType(".mapped.primertrimmed.sorted.bam", "bam/trimmed"),
-                FileType(".mapped.primertrimmed.sorted.bam.bai", "bai/trimmed"),
+                FileType(".sorted.bam", "bam-untrimmed"),
+                FileType(".sorted.bam.bai", "bai-untrimmed"),
+                FileType(".mapped.primertrimmed.sorted.bam", "bam-trimmed"),
+                FileType(".mapped.primertrimmed.sorted.bam.bai", "bai-trimmed"),
             ]
-            ncov_fasta = [FileType(".primertrimmed.consensus.fa", "fasta/consensus")]
-            ncov_variants = [FileType(".variants.tsv", "tsv/final")]
+            ncov_fasta = [FileType(".primertrimmed.consensus.fa", "fasta-consensus")]
+            ncov_variants = [FileType(".variants.tsv", "tsv-final")]
         elif sequencing_technology == ONT:
-            contamination_removal_clean_fastq = [FileType("_1.fastq.gz", "fastq/cleaned-sequence-data")]
-            fastqc = [FileType("_1_fastqc.zip", "fastqc/qc")]
+            contamination_removal_clean_fastq = [FileType("_1.fastq.gz", "fastq-cleaned-sequence-data")]
+            fastqc = [FileType("_1_fastqc.zip", "fastqc-qc")]
             ncov_bam = [
-                FileType(".sorted.bam", "bam/untrimmed"),
-                FileType(".sorted.bam.bai", "bai/untrimmed"),
-                FileType(".primertrimmed.rg.sorted.bam", "bam/trimmed"),
-                FileType(".primertrimmed.rg.sorted.bam.bai", "bai/trimmed"),
+                FileType(".sorted.bam", "bam-untrimmed"),
+                FileType(".sorted.bam.bai", "bai-untrimmed"),
+                FileType(".primertrimmed.rg.sorted.bam", "bam-trimmed"),
+                FileType(".primertrimmed.rg.sorted.bam.bai", "bai-trimmed"),
             ]
             ncov_fasta = [
-                FileType(".consensus.fa", "fasta/consensus"),
-                FileType(".preconsensus.fa", "fasta/preconsensus"),
+                FileType(".consensus.fa", "fasta-consensus"),
+                FileType(".preconsensus.fa", "fasta-preconsensus"),
             ]
             ncov_variants = [
-                FileType(".pass.vcf.gz", "vcf/final"),
-                FileType(".pass.vcf.gz.tbi", "tbi/final"),
+                FileType(".pass.vcf.gz", "vcf-final"),
+                FileType(".pass.vcf.gz.tbi", "tbi-final"),
             ]
         else:
             raise ValueError(f"Unsupported sequencing_technology: {sequencing_technology}")
 
         ncov_typing = [
-            FileType(".typing.csv", "csv/typing"),
-            FileType(".variants.csv", "csv/typing-variants"),
-            FileType(".csq.vcf", "vcf/typing-consequences"),
+            FileType(".typing.csv", "csv-typing"),
+            FileType(".variants.csv", "csv-typing-variants"),
+            FileType(".csq.vcf", "vcf-typing-consequences"),
         ]
         primer_autodetection_csvs = [
-            FileType("_primer_data.csv", "csv/primer-data"),
-            FileType("_primer_detection.csv", "csv/primer-detection"),
+            FileType("_primer_data.csv", "csv-primer-data"),
+            FileType("_primer_detection.csv", "csv-primer-detection"),
         ]
 
         for sample_id in sample_ids_result_files.contamination_removal_completed_samples:
@@ -564,7 +564,7 @@ def get_expected_output_files_per_sample(
                 get_file_with_type(
                     output_path=output_path,
                     inner_dirs=["contamination_removal", "counting"],
-                    filetypes=[FileType(".txt", "txt/cleaned-sequence-count")],
+                    filetypes=[FileType(".txt", "txt-cleaned-sequence-count")],
                     sample_id=sample_id,
                 )
             )
@@ -572,7 +572,7 @@ def get_expected_output_files_per_sample(
                 get_file_with_type(
                     output_path=output_path,
                     inner_dirs=["contamination_removal"],
-                    filetypes=[FileType("_contamination_removal.csv", "csv/cleaned-sequence-count")],
+                    filetypes=[FileType("_contamination_removal.csv", "csv-cleaned-sequence-count")],
                     sample_id=sample_id,
                 )
             )
@@ -625,7 +625,7 @@ def get_expected_output_files_per_sample(
                 get_file_with_type(
                     output_path=output_path,
                     inner_dirs=["ncov2019-artic", "output_plots"],
-                    filetypes=[FileType(".depth.png", "png/qc")],
+                    filetypes=[FileType(".depth.png", "png-qc")],
                     sample_id=sample_id,
                 )
             )

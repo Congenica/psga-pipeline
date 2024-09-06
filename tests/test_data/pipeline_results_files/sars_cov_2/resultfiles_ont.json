@@ -2,359 +2,359 @@
     "0774181d-fb20-4a73-b887-38af7eda9b38": [
         {
             "file": "contamination_removal/cleaned_fastq/0774181d-fb20-4a73-b887-38af7eda9b38_1.fastq.gz",
-            "type": "fastq/cleaned-sequence-data"
+            "type": "fastq-cleaned-sequence-data"
         },
         {
             "file": "fastqc/0774181d-fb20-4a73-b887-38af7eda9b38_1_fastqc.zip",
-            "type": "fastqc/qc"
+            "type": "fastqc-qc"
         },
         {
             "file": "contamination_removal/counting/0774181d-fb20-4a73-b887-38af7eda9b38.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/0774181d-fb20-4a73-b887-38af7eda9b38_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         },
         {
             "file": "primer_autodetection/0774181d-fb20-4a73-b887-38af7eda9b38_primer_data.csv",
-            "type": "csv/primer-data"
+            "type": "csv-primer-data"
         },
         {
             "file": "primer_autodetection/0774181d-fb20-4a73-b887-38af7eda9b38_primer_detection.csv",
-            "type": "csv/primer-detection"
+            "type": "csv-primer-detection"
         },
         {
             "file": "ncov2019-artic/output_bam/0774181d-fb20-4a73-b887-38af7eda9b38.sorted.bam",
-            "type": "bam/untrimmed"
+            "type": "bam-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/0774181d-fb20-4a73-b887-38af7eda9b38.sorted.bam.bai",
-            "type": "bai/untrimmed"
+            "type": "bai-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/0774181d-fb20-4a73-b887-38af7eda9b38.primertrimmed.rg.sorted.bam",
-            "type": "bam/trimmed"
+            "type": "bam-trimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/0774181d-fb20-4a73-b887-38af7eda9b38.primertrimmed.rg.sorted.bam.bai",
-            "type": "bai/trimmed"
+            "type": "bai-trimmed"
         },
         {
             "file": "ncov2019-artic/output_fasta/0774181d-fb20-4a73-b887-38af7eda9b38.consensus.fa",
-            "type": "fasta/consensus"
+            "type": "fasta-consensus"
         },
         {
             "file": "ncov2019-artic/output_fasta/0774181d-fb20-4a73-b887-38af7eda9b38.preconsensus.fa",
-            "type": "fasta/preconsensus"
+            "type": "fasta-preconsensus"
         },
         {
             "file": "ncov2019-artic/output_typing/0774181d-fb20-4a73-b887-38af7eda9b38.typing.csv",
-            "type": "csv/typing"
+            "type": "csv-typing"
         },
         {
             "file": "ncov2019-artic/output_typing/0774181d-fb20-4a73-b887-38af7eda9b38.variants.csv",
-            "type": "csv/typing-variants"
+            "type": "csv-typing-variants"
         },
         {
             "file": "ncov2019-artic/output_typing/0774181d-fb20-4a73-b887-38af7eda9b38.csq.vcf",
-            "type": "vcf/typing-consequences"
+            "type": "vcf-typing-consequences"
         },
         {
             "file": "ncov2019-artic/output_variants/0774181d-fb20-4a73-b887-38af7eda9b38.pass.vcf.gz",
-            "type": "vcf/final"
+            "type": "vcf-final"
         },
         {
             "file": "ncov2019-artic/output_variants/0774181d-fb20-4a73-b887-38af7eda9b38.pass.vcf.gz.tbi",
-            "type": "tbi/final"
+            "type": "tbi-final"
         },
         {
             "file": "ncov2019-artic/output_plots/0774181d-fb20-4a73-b887-38af7eda9b38.depth.png",
-            "type": "png/qc"
+            "type": "png-qc"
         },
         {
             "file": "reheadered_fasta/0774181d-fb20-4a73-b887-38af7eda9b38.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "56a63f60-764d-4fc7-8764-a46023cbe324": [
         {
             "file": "contamination_removal/cleaned_fastq/56a63f60-764d-4fc7-8764-a46023cbe324_1.fastq.gz",
-            "type": "fastq/cleaned-sequence-data"
+            "type": "fastq-cleaned-sequence-data"
         },
         {
             "file": "fastqc/56a63f60-764d-4fc7-8764-a46023cbe324_1_fastqc.zip",
-            "type": "fastqc/qc"
+            "type": "fastqc-qc"
         },
         {
             "file": "contamination_removal/counting/56a63f60-764d-4fc7-8764-a46023cbe324.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/56a63f60-764d-4fc7-8764-a46023cbe324_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         },
         {
             "file": "primer_autodetection/56a63f60-764d-4fc7-8764-a46023cbe324_primer_data.csv",
-            "type": "csv/primer-data"
+            "type": "csv-primer-data"
         },
         {
             "file": "primer_autodetection/56a63f60-764d-4fc7-8764-a46023cbe324_primer_detection.csv",
-            "type": "csv/primer-detection"
+            "type": "csv-primer-detection"
         },
         {
             "file": "ncov2019-artic/output_bam/56a63f60-764d-4fc7-8764-a46023cbe324.sorted.bam",
-            "type": "bam/untrimmed"
+            "type": "bam-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/56a63f60-764d-4fc7-8764-a46023cbe324.sorted.bam.bai",
-            "type": "bai/untrimmed"
+            "type": "bai-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/56a63f60-764d-4fc7-8764-a46023cbe324.primertrimmed.rg.sorted.bam",
-            "type": "bam/trimmed"
+            "type": "bam-trimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/56a63f60-764d-4fc7-8764-a46023cbe324.primertrimmed.rg.sorted.bam.bai",
-            "type": "bai/trimmed"
+            "type": "bai-trimmed"
         },
         {
             "file": "ncov2019-artic/output_fasta/56a63f60-764d-4fc7-8764-a46023cbe324.consensus.fa",
-            "type": "fasta/consensus"
+            "type": "fasta-consensus"
         },
         {
             "file": "ncov2019-artic/output_fasta/56a63f60-764d-4fc7-8764-a46023cbe324.preconsensus.fa",
-            "type": "fasta/preconsensus"
+            "type": "fasta-preconsensus"
         },
         {
             "file": "ncov2019-artic/output_typing/56a63f60-764d-4fc7-8764-a46023cbe324.typing.csv",
-            "type": "csv/typing"
+            "type": "csv-typing"
         },
         {
             "file": "ncov2019-artic/output_typing/56a63f60-764d-4fc7-8764-a46023cbe324.variants.csv",
-            "type": "csv/typing-variants"
+            "type": "csv-typing-variants"
         },
         {
             "file": "ncov2019-artic/output_typing/56a63f60-764d-4fc7-8764-a46023cbe324.csq.vcf",
-            "type": "vcf/typing-consequences"
+            "type": "vcf-typing-consequences"
         },
         {
             "file": "ncov2019-artic/output_variants/56a63f60-764d-4fc7-8764-a46023cbe324.pass.vcf.gz",
-            "type": "vcf/final"
+            "type": "vcf-final"
         },
         {
             "file": "ncov2019-artic/output_variants/56a63f60-764d-4fc7-8764-a46023cbe324.pass.vcf.gz.tbi",
-            "type": "tbi/final"
+            "type": "tbi-final"
         },
         {
             "file": "ncov2019-artic/output_plots/56a63f60-764d-4fc7-8764-a46023cbe324.depth.png",
-            "type": "png/qc"
+            "type": "png-qc"
         },
         {
             "file": "reheadered_fasta/56a63f60-764d-4fc7-8764-a46023cbe324.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "985347c5-ff6a-454c-ac34-bc353d05dd70": [
         {
             "file": "contamination_removal/counting/985347c5-ff6a-454c-ac34-bc353d05dd70.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/985347c5-ff6a-454c-ac34-bc353d05dd70_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         }
     ],
     "a0951432-cd94-45b5-96d5-b721c037a451": [
         {
             "file": "contamination_removal/cleaned_fastq/a0951432-cd94-45b5-96d5-b721c037a451_1.fastq.gz",
-            "type": "fastq/cleaned-sequence-data"
+            "type": "fastq-cleaned-sequence-data"
         },
         {
             "file": "fastqc/a0951432-cd94-45b5-96d5-b721c037a451_1_fastqc.zip",
-            "type": "fastqc/qc"
+            "type": "fastqc-qc"
         },
         {
             "file": "contamination_removal/counting/a0951432-cd94-45b5-96d5-b721c037a451.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/a0951432-cd94-45b5-96d5-b721c037a451_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         },
         {
             "file": "primer_autodetection/a0951432-cd94-45b5-96d5-b721c037a451_primer_data.csv",
-            "type": "csv/primer-data"
+            "type": "csv-primer-data"
         },
         {
             "file": "primer_autodetection/a0951432-cd94-45b5-96d5-b721c037a451_primer_detection.csv",
-            "type": "csv/primer-detection"
+            "type": "csv-primer-detection"
         },
         {
             "file": "ncov2019-artic/output_bam/a0951432-cd94-45b5-96d5-b721c037a451.sorted.bam",
-            "type": "bam/untrimmed"
+            "type": "bam-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/a0951432-cd94-45b5-96d5-b721c037a451.sorted.bam.bai",
-            "type": "bai/untrimmed"
+            "type": "bai-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/a0951432-cd94-45b5-96d5-b721c037a451.primertrimmed.rg.sorted.bam",
-            "type": "bam/trimmed"
+            "type": "bam-trimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/a0951432-cd94-45b5-96d5-b721c037a451.primertrimmed.rg.sorted.bam.bai",
-            "type": "bai/trimmed"
+            "type": "bai-trimmed"
         },
         {
             "file": "ncov2019-artic/output_fasta/a0951432-cd94-45b5-96d5-b721c037a451.consensus.fa",
-            "type": "fasta/consensus"
+            "type": "fasta-consensus"
         },
         {
             "file": "ncov2019-artic/output_fasta/a0951432-cd94-45b5-96d5-b721c037a451.preconsensus.fa",
-            "type": "fasta/preconsensus"
+            "type": "fasta-preconsensus"
         },
         {
             "file": "ncov2019-artic/output_typing/a0951432-cd94-45b5-96d5-b721c037a451.typing.csv",
-            "type": "csv/typing"
+            "type": "csv-typing"
         },
         {
             "file": "ncov2019-artic/output_typing/a0951432-cd94-45b5-96d5-b721c037a451.variants.csv",
-            "type": "csv/typing-variants"
+            "type": "csv-typing-variants"
         },
         {
             "file": "ncov2019-artic/output_typing/a0951432-cd94-45b5-96d5-b721c037a451.csq.vcf",
-            "type": "vcf/typing-consequences"
+            "type": "vcf-typing-consequences"
         },
         {
             "file": "ncov2019-artic/output_variants/a0951432-cd94-45b5-96d5-b721c037a451.pass.vcf.gz",
-            "type": "vcf/final"
+            "type": "vcf-final"
         },
         {
             "file": "ncov2019-artic/output_variants/a0951432-cd94-45b5-96d5-b721c037a451.pass.vcf.gz.tbi",
-            "type": "tbi/final"
+            "type": "tbi-final"
         },
         {
             "file": "ncov2019-artic/output_plots/a0951432-cd94-45b5-96d5-b721c037a451.depth.png",
-            "type": "png/qc"
+            "type": "png-qc"
         },
         {
             "file": "reheadered_fasta/a0951432-cd94-45b5-96d5-b721c037a451.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ],
     "b1131432-cd94-45b5-96d5-b721c037a451": [
         {
             "file": "contamination_removal/cleaned_fastq/b1131432-cd94-45b5-96d5-b721c037a451_1.fastq.gz",
-            "type": "fastq/cleaned-sequence-data"
+            "type": "fastq-cleaned-sequence-data"
         },
         {
             "file": "fastqc/b1131432-cd94-45b5-96d5-b721c037a451_1_fastqc.zip",
-            "type": "fastqc/qc"
+            "type": "fastqc-qc"
         },
         {
             "file": "contamination_removal/counting/b1131432-cd94-45b5-96d5-b721c037a451.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/b1131432-cd94-45b5-96d5-b721c037a451_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         },
         {
             "file": "primer_autodetection/b1131432-cd94-45b5-96d5-b721c037a451_primer_data.csv",
-            "type": "csv/primer-data"
+            "type": "csv-primer-data"
         },
         {
             "file": "primer_autodetection/b1131432-cd94-45b5-96d5-b721c037a451_primer_detection.csv",
-            "type": "csv/primer-detection"
+            "type": "csv-primer-detection"
         }
     ],
     "e2331432-cd94-45b5-96d5-b721c037a451": [
         {
             "file": "contamination_removal/counting/e2331432-cd94-45b5-96d5-b721c037a451.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/e2331432-cd94-45b5-96d5-b721c037a451_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         }
     ],
     "e80f3c63-d139-4c14-bd72-7a43897ab40d": [
         {
             "file": "contamination_removal/cleaned_fastq/e80f3c63-d139-4c14-bd72-7a43897ab40d_1.fastq.gz",
-            "type": "fastq/cleaned-sequence-data"
+            "type": "fastq-cleaned-sequence-data"
         },
         {
             "file": "fastqc/e80f3c63-d139-4c14-bd72-7a43897ab40d_1_fastqc.zip",
-            "type": "fastqc/qc"
+            "type": "fastqc-qc"
         },
         {
             "file": "contamination_removal/counting/e80f3c63-d139-4c14-bd72-7a43897ab40d.txt",
-            "type": "txt/cleaned-sequence-count"
+            "type": "txt-cleaned-sequence-count"
         },
         {
             "file": "contamination_removal/e80f3c63-d139-4c14-bd72-7a43897ab40d_contamination_removal.csv",
-            "type": "csv/cleaned-sequence-count"
+            "type": "csv-cleaned-sequence-count"
         },
         {
             "file": "primer_autodetection/e80f3c63-d139-4c14-bd72-7a43897ab40d_primer_data.csv",
-            "type": "csv/primer-data"
+            "type": "csv-primer-data"
         },
         {
             "file": "primer_autodetection/e80f3c63-d139-4c14-bd72-7a43897ab40d_primer_detection.csv",
-            "type": "csv/primer-detection"
+            "type": "csv-primer-detection"
         },
         {
             "file": "ncov2019-artic/output_bam/e80f3c63-d139-4c14-bd72-7a43897ab40d.sorted.bam",
-            "type": "bam/untrimmed"
+            "type": "bam-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/e80f3c63-d139-4c14-bd72-7a43897ab40d.sorted.bam.bai",
-            "type": "bai/untrimmed"
+            "type": "bai-untrimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/e80f3c63-d139-4c14-bd72-7a43897ab40d.primertrimmed.rg.sorted.bam",
-            "type": "bam/trimmed"
+            "type": "bam-trimmed"
         },
         {
             "file": "ncov2019-artic/output_bam/e80f3c63-d139-4c14-bd72-7a43897ab40d.primertrimmed.rg.sorted.bam.bai",
-            "type": "bai/trimmed"
+            "type": "bai-trimmed"
         },
         {
             "file": "ncov2019-artic/output_fasta/e80f3c63-d139-4c14-bd72-7a43897ab40d.consensus.fa",
-            "type": "fasta/consensus"
+            "type": "fasta-consensus"
         },
         {
             "file": "ncov2019-artic/output_fasta/e80f3c63-d139-4c14-bd72-7a43897ab40d.preconsensus.fa",
-            "type": "fasta/preconsensus"
+            "type": "fasta-preconsensus"
         },
         {
             "file": "ncov2019-artic/output_typing/e80f3c63-d139-4c14-bd72-7a43897ab40d.typing.csv",
-            "type": "csv/typing"
+            "type": "csv-typing"
         },
         {
             "file": "ncov2019-artic/output_typing/e80f3c63-d139-4c14-bd72-7a43897ab40d.variants.csv",
-            "type": "csv/typing-variants"
+            "type": "csv-typing-variants"
         },
         {
             "file": "ncov2019-artic/output_typing/e80f3c63-d139-4c14-bd72-7a43897ab40d.csq.vcf",
-            "type": "vcf/typing-consequences"
+            "type": "vcf-typing-consequences"
         },
         {
             "file": "ncov2019-artic/output_variants/e80f3c63-d139-4c14-bd72-7a43897ab40d.pass.vcf.gz",
-            "type": "vcf/final"
+            "type": "vcf-final"
         },
         {
             "file": "ncov2019-artic/output_variants/e80f3c63-d139-4c14-bd72-7a43897ab40d.pass.vcf.gz.tbi",
-            "type": "tbi/final"
+            "type": "tbi-final"
         },
         {
             "file": "ncov2019-artic/output_plots/e80f3c63-d139-4c14-bd72-7a43897ab40d.depth.png",
-            "type": "png/qc"
+            "type": "png-qc"
         },
         {
             "file": "reheadered_fasta/e80f3c63-d139-4c14-bd72-7a43897ab40d.fasta",
-            "type": "fasta/final"
+            "type": "fasta-final"
         }
     ]
 }
