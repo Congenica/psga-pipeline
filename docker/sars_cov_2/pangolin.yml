@@ -5,7 +5,7 @@ channels:
 dependencies:
   - awscli=1.25.92
   - procps-ng=4.0.3 # required for ps
-  - pangolin=4.3
+  - pangolin=4.3.1
   - pangolin-data=1.21
   - scorpio=0.3.17
   - constellations=0.1.12
