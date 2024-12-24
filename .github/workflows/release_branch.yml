@@ -9,51 +9,10 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  vars:
-    runs-on: ubuntu-22.04
-    environment: saas01
-    outputs:
-      AWS_REGION: ${{ vars.AWS_REGION }}
-      AWS_INSTANCE_TYPE: ${{ vars.AWS_INSTANCE_TYPE}}
-      CICD_OIDC_ROLE: ${{ vars.CICD_OIDC_ROLE }}
-      DEV_CICD_OIDC_ROLE: ${{ vars.DEV_CICD_OIDC_ROLE }}
-      GH_RUNNER_SUBNET_ID: ${{ vars.GH_RUNNER_SUBNET_ID }}
-      GH_RUNNER_SECURITY_GROUP_ID: ${{ vars.GH_RUNNER_SECURITY_GROUP_ID }}
-      GH_RUNNER_IAM_ROLE_NAME: ${{ vars.GH_RUNNER_IAM_ROLE_NAME }}
-    steps:
-      - run: echo "Exposing env vars"
-
-  publish_configs:
-    name: Publish configs
-    needs:
-      - build_release_image
-      - vars
-    uses: ./.github/workflows/publish_configs.yaml
-    secrets:
-      GH_PSGA_SYSTEM_PAT: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
-    with:
-      actions_env: saas01
-
-  start-runner:
-    uses: Congenica/psga-reusable-workflows/.github/workflows/ec2-runner-start.yaml@main
-    needs: vars
-    secrets:
-      role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-      github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
-    with:
-      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
-      ec2-instance-type: ${{ needs.vars.outputs.AWS_INSTANCE_TYPE }}
-      subnet-id: ${{  needs.vars.outputs.GH_RUNNER_SUBNET_ID }}
-      security-group-id: ${{  needs.vars.outputs.GH_RUNNER_SECURITY_GROUP_ID }}
-      iam-role-name: ${{  needs.vars.outputs.GH_RUNNER_IAM_ROLE_NAME }}
-      env_type: saas01
-
   build_release_image:
+    runs-on: ubuntu-22.04
+    environment: saas001
     name: Build and push the release image
-    needs:
-      - vars
-      - start-runner # required to start the main job when the runner is ready
-    runs-on: ${{ needs.start-runner.outputs.label }}
     strategy:
       matrix:
         image:
@@ -69,18 +28,18 @@ jobs:
         run: |
           RELEASE_VERSION=${GITHUB_REF/refs\/heads\/release\//}
           echo "Release version: $RELEASE_VERSION, Github ref: ${GITHUB_REF}"
-          ECR_PATH_PROD=${{ secrets.ECR_PATH_PROD }}
-          ECR_PATH_DEV=${{ secrets.ECR_PATH_DEV }}
+          ECR_PATH_RELENG=${{ vars.ECR_PATH_RELENG }}
+          ECR_PATH_DEV=${{ vars.ECR_PATH_DEV }}
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
           echo "DEV_IMAGE_NAME=$ECR_PATH_DEV/${{ matrix.image }}:${{ github.sha }}" >> $GITHUB_ENV
           echo "DEV_RELEASE_NAME=$ECR_PATH_DEV/${{ matrix.image }}:$RELEASE_VERSION" >> $GITHUB_ENV
-          echo "PROD_RELEASE_NAME=$ECR_PATH_PROD/${{ matrix.image }}:$RELEASE_VERSION" >> $GITHUB_ENV
+          echo "PROD_RELEASE_NAME=$ECR_PATH_RELENG/${{ matrix.image }}:$RELEASE_VERSION" >> $GITHUB_ENV
 
       - name: Configure dev AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ vars.AWS_REGION }}
-          role-to-assume: ${{ vars.CICD_OIDC_ROLE }}
+          aws-region: eu-west-2
+          role-to-assume: ${{ vars.CICD_OIDC_ROLE_DEV }}
           role-session-name: cicd-dev-role-session
           mask-aws-account-id: false
 
@@ -107,12 +66,12 @@ jobs:
             -f docker/Dockerfile-release .
           docker push $DEV_RELEASE_NAME
 
-      - name: Configure prod AWS Credentials
+      - name: Configure releng AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ needs.vars.outputs.AWS_REGION }}
-          role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-          role-session-name: cicd-prod-role-session
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.CICD_OIDC_ROLE }}
+          role-session-name: cicd-releng-role-session
           mask-aws-account-id: false
 
       - name: Login to prod Amazon ECR
@@ -121,17 +80,10 @@ jobs:
       - name: Push the release image to prod
         run: docker push $PROD_RELEASE_NAME
 
-  stop-runner:
-    if: ${{ always() }} # required to stop the runner even if previous jobs failed or are cancelled
+  publish_configs:
+    name: Publish configs
     needs:
-      - start-runner # required to get output from the start-runner job
-      - build_release_image # required to wait when the main job is done
-      - vars
-    uses: Congenica/psga-reusable-workflows/.github/workflows/ec2-runner-stop.yaml@main
-    secrets:
-      role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-      github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
+      - build_release_image
+    uses: ./.github/workflows/publish_configs.yaml
     with:
-      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
-      label: ${{ needs.start-runner.outputs.label }}
-      ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
+      env_type: saas001

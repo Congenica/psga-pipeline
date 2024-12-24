@@ -2,54 +2,19 @@ name: Publish config files
 on:
   workflow_call:
     inputs:
-      actions_env:
+      env_type:
         type: string
         default: nonprod
         required: false
-    secrets:
-      GH_PSGA_SYSTEM_PAT:
-        required: true
 
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
 
 jobs:
-  vars:
-    runs-on: ubuntu-22.04
-    environment: ${{ inputs.actions_env }}
-    outputs:
-      AWS_REGION: ${{ vars.AWS_REGION }}
-      AWS_INSTANCE_TYPE: ${{ vars.AWS_INSTANCE_TYPE}}
-      CICD_OIDC_ROLE: ${{ vars.CICD_OIDC_ROLE }}
-      GH_RUNNER_SUBNET_ID: ${{ vars.GH_RUNNER_SUBNET_ID }}
-      GH_RUNNER_SECURITY_GROUP_ID: ${{ vars.GH_RUNNER_SECURITY_GROUP_ID }}
-      GH_RUNNER_IAM_ROLE_NAME: ${{ vars.GH_RUNNER_IAM_ROLE_NAME }}
-      S3_BUCKET_PATH: ${{ vars.S3_BUCKET_PATH }}
-    steps:
-      - run: echo "Exposing env vars"
-
-  start-runner:
-    uses: Congenica/psga-reusable-workflows/.github/workflows/ec2-runner-start.yaml@main
-    needs: vars
-    secrets:
-      role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-      github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
-    with:
-      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
-      ec2-instance-type: ${{ needs.vars.outputs.AWS_INSTANCE_TYPE }}
-      subnet-id: ${{  needs.vars.outputs.GH_RUNNER_SUBNET_ID }}
-      security-group-id: ${{  needs.vars.outputs.GH_RUNNER_SECURITY_GROUP_ID }}
-      iam-role-name: ${{  needs.vars.outputs.GH_RUNNER_IAM_ROLE_NAME }}
-      env_type: ${{ inputs.actions_env }}
-
   upload:
-    name: Upload
-    needs:
-      - start-runner # required to start the main job when the runner is ready
-      - vars
-    runs-on: ${{ needs.start-runner.outputs.label }}
-    environment: ${{ inputs.actions_env }}
+    runs-on: ubuntu-22.04
+    environment: ${{ inputs.env_type }}
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -57,8 +22,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ needs.vars.outputs.AWS_REGION }}
-          role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.CICD_OIDC_ROLE }}
           role-session-name: cicd-role-session
           mask-aws-account-id: false
 
@@ -73,24 +38,9 @@ jobs:
           fi
           for version in $VERSIONS; do
             for config in $(ls app/config); do
-              S3_PATH="${{ needs.vars.outputs.S3_BUCKET_PATH }}/${version}/${config}"
+              S3_PATH="${{ vars.PSGA_ARTIFACTS_BUCKET_PATH }}/${version}/${config}"
               yq e -i ".pipeline_version.docker_tag = \"${version}\"" app/config/${config}
               echo "Publishing version ${version} for config ${config} to ${S3_PATH}"
               aws s3 cp app/config/${config} $S3_PATH
             done
           done
-
-  stop-runner:
-    if: ${{ always() }} # required to stop the runner even if previous jobs failed or are cancelled
-    needs:
-      - start-runner # required to get output from the start-runner job
-      - upload # required to wait when the main job is done
-      - vars
-    uses: Congenica/psga-reusable-workflows/.github/workflows/ec2-runner-stop.yaml@main
-    secrets:
-      role-to-assume: ${{ needs.vars.outputs.CICD_OIDC_ROLE }}
-      github-token: ${{ secrets.GH_PSGA_SYSTEM_PAT }}
-    with:
-      aws-region: ${{ needs.vars.outputs.AWS_REGION }}
-      label: ${{ needs.start-runner.outputs.label }}
-      ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
